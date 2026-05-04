@@ -8,11 +8,14 @@ REM     fallback to PATH lookup)
 REM   * inserts the ROM beside this batch file as cartridge slot A
 REM   * forces the cartridge mapper to ASCII16 (the ROM uses ASCII16 banking;
 REM     openMSX cannot reliably auto-detect that for 128 KB images)
-REM   * selects an MSX1 machine (Sony HB-10) so the demo runs on its primary
-REM     target hardware
-REM
-REM To play on a different machine, edit MACHINE below or pass it as the
-REM first argument:    openmsx.bat msx2     (or "msx2plus", "turboR", ...)
+REM   * selects a generic MSX machine that ships *with* openMSX (the C-BIOS
+REM     configs), so you don't have to provide any extra ROM image:
+REM         openmsx.bat        --> C-BIOS_MSX2   (default, runs on MSX2 hw)
+REM         openmsx.bat 1      --> C-BIOS_MSX1   (forces MSX1 mode)
+REM         openmsx.bat 2      --> C-BIOS_MSX2   (same as default)
+REM   * passing any other string is treated as a literal openMSX machine ID:
+REM         openmsx.bat Sony_HB-10
+REM         openmsx.bat Al_Alamiah_AX370
 REM ===========================================================================
 
 setlocal
@@ -21,7 +24,11 @@ set "DIR=%~dp0"
 set "ROM=%DIR%Sakhr MSX Story Demo.rom"
 
 if "%~1"=="" (
-    set "MACHINE=Sony_HB-10"
+    set "MACHINE=C-BIOS_MSX2"
+) else if "%~1"=="2" (
+    set "MACHINE=C-BIOS_MSX2"
+) else if "%~1"=="1" (
+    set "MACHINE=C-BIOS_MSX1"
 ) else (
     set "MACHINE=%~1"
 )

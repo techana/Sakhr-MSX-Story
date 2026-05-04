@@ -12,15 +12,17 @@ If you'd rather skip all this, just run the bundled launcher:
 - macOS / Linux:   `./openmsx.sh`
 - Windows:         `openmsx.bat`
 
-Both scripts find openMSX, set the mapper to ASCII16, pick an MSX1 machine,
-and start the ROM in one step.
+Both scripts find openMSX, set the mapper to ASCII16, pick a generic
+**C-BIOS MSX2** machine that ships with openMSX, and start the ROM in
+one step. Pass `1` to force MSX1 mode (`./openmsx.sh 1` or `openmsx.bat 1`)
+or any openMSX machine ID for a specific real-machine config.
 
 ## Files in this distribution
 
 ```
 Sakhr MSX Story Demo.rom              ← the ROM image (131,072 bytes)
 openmsx.sh, openmsx.bat               ← one-click launchers
-play from physical cartridge.md       ← physical-cart burning guide
+play from physical cartridge.md       ← physical-cart playing guide
 play from physical cartridge -ar.md
 play in emulator.md                   ← this file
 play in emulator -ar.md
@@ -31,42 +33,61 @@ play in emulator -ar.md
 openMSX is the most accurate MSX emulator and is free / open-source.
 Install it from <https://openmsx.org/>.
 
+### A note on machine configurations
+
+openMSX needs a *machine config* (a virtual MSX model) to run any cart.
+The bundled installer ships with the **C-BIOS** family of machines —
+clean, royalty-free MSX implementations covering MSX1 and MSX2 — and
+those work for this demo without any extra setup. Use them unless you
+have a specific real-machine config (Sony HB-10, Sakhr AX-370, …) and
+its BIOS ROM dumps installed; those produce slightly more authentic
+behaviour but are not required.
+
+| Use this machine ID         | When                                          |
+| --------------------------- | --------------------------------------------- |
+| `C-BIOS_MSX2`               | Default — runs everywhere, bundled, MSX2 hw   |
+| `C-BIOS_MSX1`               | Force MSX1 mode (the demo's primary target)   |
+| `Sony_HB-10`                | If you have the Sony HB-10 BIOS installed     |
+| `Al_Alamiah_AX370`          | If you have the Sakhr AX-370 BIOS installed   |
+
 ### From a terminal / command line
 
 macOS:
 ```
 /Applications/openMSX.app/Contents/MacOS/openmsx \
-    -machine Sony_HB-10 \
+    -machine C-BIOS_MSX2 \
     -carta "Sakhr MSX Story Demo.rom" \
     -romtype ASCII16
 ```
 
 Linux:
 ```
-openmsx -machine Sony_HB-10 -carta "Sakhr MSX Story Demo.rom" -romtype ASCII16
+openmsx -machine C-BIOS_MSX2 -carta "Sakhr MSX Story Demo.rom" -romtype ASCII16
 ```
 
 Windows (PowerShell):
 ```
 & "C:\Program Files\openMSX\openmsx.exe" `
-    -machine Sony_HB-10 `
+    -machine C-BIOS_MSX2 `
     -carta "Sakhr MSX Story Demo.rom" `
     -romtype ASCII16
 ```
 
 What each flag does:
 
-| Flag                 | Meaning                                                |
-| -------------------- | ------------------------------------------------------ |
-| `-machine Sony_HB-10`| MSX1 hardware profile — the ROM's primary target. You can also use `msx2`, `msx2plus`, or `turboR` and the demo still runs (V9938 palette installs automatically). |
-| `-carta <ROM>`       | Insert into cartridge slot A.                          |
-| `-romtype ASCII16`   | **Force the ASCII16 mapper.** Required — auto-detect can pick the wrong type for 128 KB ROMs. |
+| Flag                  | Meaning                                                |
+| --------------------- | ------------------------------------------------------ |
+| `-machine C-BIOS_MSX2`| Hardware profile. `C-BIOS_MSX2` ships with openMSX, no extra ROM needed. Swap for `C-BIOS_MSX1` to run as MSX1, or use `Sony_HB-10` / `Al_Alamiah_AX370` if you have those BIOS images. |
+| `-carta <ROM>`        | Insert into cartridge slot A.                          |
+| `-romtype ASCII16`    | **Force the ASCII16 mapper.** Required — auto-detect can pick the wrong type for 128 KB ROMs. |
 
 ### From the openMSX GUI menu
 
 1. Launch openMSX with no command-line arguments.
 2. Press **F10** to open the on-screen control bar.
-3. **Hardware → Change Machine** → pick *Sony HB-10* (or any MSX1).
+3. **Hardware → Change Machine** → pick *C-BIOS MSX2* (or *C-BIOS MSX1*
+   for MSX1 mode, or *Sony HB-10* / *Sakhr AX-370* if you have those
+   installed).
 4. **Media → Cartridge Slot A → Insert ROM image…** and select
    `Sakhr MSX Story Demo.rom`.
 5. **Media → Cartridge Slot A → Mapper Type** → **ASCII16**.
@@ -110,9 +131,10 @@ uses:
 If the emulator thinks the cart is *Plain* (no mapper), the writes to
 `$6000`/`$7000` are silently ignored and the CPU only ever sees the
 first 32 KB of the ROM — which never includes the slide assets, so the
-demo crashes or shows garbage. If it picks *Konami* (MegaROM) by
-mistake, the bank-select addresses are different (`$5000`/`$7000` etc.)
-and again the wrong bytes get switched in.
+demo shows the splash but garbles or freezes the moment you press Space
+to leave it. If it picks *Konami* (MegaROM) by mistake, the bank-select
+addresses are different (`$5000`/`$7000` etc.) and again the wrong
+bytes get switched in.
 
 This is why every launch has to specify ASCII16 explicitly.
 

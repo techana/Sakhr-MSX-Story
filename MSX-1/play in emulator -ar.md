@@ -12,16 +12,19 @@ ASCII16**. تفصيلة المخطط هذه هي السبب الكامل في أ
 - على macOS / Linux:   `./openmsx.sh`
 - على Windows:         `openmsx.bat`
 
-كلا السكربتين يبحثان عن openMSX، يضبطان المخطط على ASCII16، يختاران
-جهاز MSX1، ويبدآن الـ ROM في خطوة واحدة.
+كلا السكربتين يبحثان عن openMSX، يضبطان المخطط على ASCII16، ويختاران
+جهاز **C-BIOS MSX2** عام (يأتي مرفقاً مع openMSX جاهزاً)، ثم يبدآن
+الـ ROM في خطوة واحدة. إذا أردت وضع MSX1 مرّر `1` للسكربت
+(`./openmsx.sh 1` أو `openmsx.bat 1`)، أو مرّر معرّف جهاز openMSX
+محدّداً لاستخدام إعداد جهاز فعلي.
 
 ## ملفات هذه الحزمة
 
 ```
 Sakhr MSX Story Demo.rom              ← صورة الـ ROM (131,072 بايت)
 openmsx.sh, openmsx.bat               ← مشغّلان جاهزان
-play from physical cartridge.md       ← دليل الحرق على خرطوشة فعلية
-play from physical cartridge -ar.md
+play from physical cartridge.md       ← دليل التشغيل من خرطوشة فعلية (إنجليزي)
+play from physical cartridge -ar.md   ← (عربي)
 play in emulator.md                   ← دليل التشغيل على المحاكي (إنجليزي)
 play in emulator -ar.md               ← هذا الملف
 ```
@@ -31,42 +34,59 @@ play in emulator -ar.md               ← هذا الملف
 محاكي openMSX هو الأكثر دقة للأجهزة من عائلة MSX، وهو مجاني ومفتوح
 المصدر. يمكن تنزيله من <https://openmsx.org/>.
 
+### ملاحظة عن إعدادات الجهاز (machine config)
+
+يحتاج openMSX إلى *إعداد جهاز* (نموذج MSX افتراضي) ليتمكن من تشغيل أي
+خرطوشة. النسخة المرفقة عند التثبيت تأتي معها عائلة **C-BIOS** —
+نسخ نظيفة وحرّة من نظام MSX تغطي MSX1 و MSX2 — وهي تكفي لتشغيل هذا
+العرض دون أي إعداد إضافي. استخدمها إلا إن كان لديك إعداد جهاز فعلي
+محدّد (Sony HB-10، Sakhr AX-370 ...) ولديك نسخ من ROM الـ BIOS
+الخاصة بها مثبَّتة؛ تلك تعطي سلوكاً أقرب للأصل لكنها ليست شرطاً.
+
+| استخدم معرّف الجهاز هذا       | متى                                         |
+| --------------------------- | --------------------------------------------- |
+| `C-BIOS_MSX2`               | الافتراضي — يعمل في كل مكان، مرفق، عتاد MSX2 |
+| `C-BIOS_MSX1`               | لتشغيل وضع MSX1 (الجهاز المستهدف الأساسي)    |
+| `Sony_HB-10`                | إذا كان لديك BIOS سوني HB-10 مثبَّتاً         |
+| `Al_Alamiah_AX370`          | إذا كان لديك BIOS صخر AX-370 مثبَّتاً         |
+
 ### من سطر الأوامر / الطرفية
 
 على macOS:
 ```
 /Applications/openMSX.app/Contents/MacOS/openmsx \
-    -machine Sony_HB-10 \
+    -machine C-BIOS_MSX2 \
     -carta "Sakhr MSX Story Demo.rom" \
     -romtype ASCII16
 ```
 
 على Linux:
 ```
-openmsx -machine Sony_HB-10 -carta "Sakhr MSX Story Demo.rom" -romtype ASCII16
+openmsx -machine C-BIOS_MSX2 -carta "Sakhr MSX Story Demo.rom" -romtype ASCII16
 ```
 
 على Windows (PowerShell):
 ```
 & "C:\Program Files\openMSX\openmsx.exe" `
-    -machine Sony_HB-10 `
+    -machine C-BIOS_MSX2 `
     -carta "Sakhr MSX Story Demo.rom" `
     -romtype ASCII16
 ```
 
 شرح كل خيار:
 
-| الخيار                | المعنى                                                  |
-| -------------------- | ------------------------------------------------------ |
-| `-machine Sony_HB-10`| ملف عتاد MSX1 — هو الجهاز المستهدف الأساسي لهذا الـ ROM. يمكن أيضاً اختيار `msx2` أو `msx2plus` أو `turboR` وسيعمل العرض (تُحمَّل لوحة V9938 تلقائياً). |
-| `-carta <ROM>`       | إدراج الـ ROM في فتحة الخرطوشة A.                       |
-| `-romtype ASCII16`   | **فرض مخطط ASCII16.** ضروري — الكشف التلقائي قد يختار النوع الخاطئ في ROM 128 كيلوبايت. |
+| الخيار                 | المعنى                                                  |
+| --------------------- | ------------------------------------------------------ |
+| `-machine C-BIOS_MSX2`| نموذج العتاد. `C-BIOS_MSX2` يأتي مرفقاً مع openMSX، لا حاجة لأي ROM إضافي. استبدله بـ `C-BIOS_MSX1` لتشغيل وضع MSX1، أو استخدم `Sony_HB-10` / `Al_Alamiah_AX370` إن كانت BIOSات تلك الأجهزة لديك. |
+| `-carta <ROM>`        | إدراج الـ ROM في فتحة الخرطوشة A.                       |
+| `-romtype ASCII16`    | **فرض مخطط ASCII16.** ضروري — الكشف التلقائي قد يختار النوع الخاطئ في ROM 128 كيلوبايت. |
 
 ### من قائمة openMSX الرسومية
 
 1. شغّل openMSX بدون أي وسائط من سطر الأوامر.
 2. اضغط **F10** لإظهار شريط التحكم على الشاشة.
-3. **Hardware → Change Machine** → اختر *Sony HB-10* (أو أي جهاز MSX1).
+3. **Hardware → Change Machine** → اختر *C-BIOS MSX2* (أو *C-BIOS MSX1*
+   لوضع MSX1، أو *Sony HB-10* / *Sakhr AX-370* إن كانت لديك مثبَّتة).
 4. **Media → Cartridge Slot A → Insert ROM image…** ثم اختر الملف
    `Sakhr MSX Story Demo.rom`.
 5. **Media → Cartridge Slot A → Mapper Type** → **ASCII16**.
@@ -109,9 +129,10 @@ ROM بحجم 128 كيلوبايت أكبر بمرتين من نافذة عناو
 
 إذا اعتقد المحاكي أن الخرطوشة من نوع *Plain* (بدون مخطط)، فإن الكتابات
 على `$6000` / `$7000` تُتجاهل بصمت ويرى المعالج فقط أول 32 كيلوبايت من
-الـ ROM — وهذه لا تحتوي على بيانات الشرائح، فيتعطل العرض أو يظهر
-سخاماً. وإذا اختار *Konami* (MegaROM) خطأً، فإن عناوين تبديل البنك
-مختلفة (`$5000` / `$7000` ...) وتُحمَّل بنوك خاطئة في الموضع الخطأ.
+الـ ROM — وهذه لا تحتوي على بيانات الشرائح، فيظهر الافتتاح ثم يفسد
+العرض أو يتوقف لحظة الضغط على Space للانتقال منه. وإذا اختار *Konami*
+(MegaROM) خطأً، فإن عناوين تبديل البنك مختلفة (`$5000` / `$7000` ...)
+وتُحمَّل بنوك خاطئة في الموضع الخطأ.
 
 لهذا السبب يجب تحديد ASCII16 صراحةً مع كل تشغيل.
 
