@@ -47,9 +47,11 @@ Cartridges that are known to work:
 > **Why the mapper setting matters.** A 128 KB cartridge has to swap
 > blocks of memory in and out of the computer's view as the program
 > runs, and several different layouts existed historically. This demo
-> uses the layout known as **ASCII 16K**. If the multi-cart guesses
-> wrong, the screen will stay black or show garbled colours — set the
-> mapper manually to ASCII 16K and reload.
+> uses the layout known as **ASCII 16K** and includes a small fingerprint
+> at boot that lets most multi-carts identify the mapper automatically.
+> If your multi-cart's auto-detect doesn't pick ASCII 16K (the screen
+> stays black or shows garbled colours after pressing Space on the
+> splash), set the mapper manually to ASCII 16K and reload.
 
 If your multi-cart's menu doesn't list ASCII 16K at all, it likely
 can't run 128 KB ASCII16 carts. Almost every modern multi-cart does

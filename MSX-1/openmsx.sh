@@ -59,5 +59,8 @@ fi
 
 echo "openMSX: $OPENMSX"
 echo "machine: $MACHINE"
-echo "ROM:     $ROM (ASCII16 mapper)"
+echo "ROM:     $ROM"
+# We still pass -romtype ASCII16 explicitly. Auto-detect succeeds on
+# this ROM (the boot code lays down a mapper-detect fingerprint), but
+# pinning is harmless and shaves a few frames of detection latency.
 exec "$OPENMSX" -machine "$MACHINE" -carta "$ROM" -romtype ASCII16

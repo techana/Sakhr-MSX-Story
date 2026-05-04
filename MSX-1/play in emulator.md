@@ -1,11 +1,11 @@
 # Playing *Sakhr MSX Story Demo* in an emulator (manual launch)
 
 The cartridge image distributed here is a **128 KB ASCII16-mapper ROM**.
-That single mapper detail is the whole reason a manual launch needs a
-little care — most emulators can't auto-detect ASCII16 from a 128 KB
-file because the bank-switch hardware is identified by *write addresses*
-the ROM actually uses at runtime, not by anything in the file header.
-You must tell the emulator the mapper type up front.
+The ROM lays down an auto-detect fingerprint at boot, so most modern
+emulators (openMSX, blueMSX, WebMSX) recognise it on their own — you
+can usually just open it as a cartridge and it works. If your emulator
+of choice doesn't auto-detect, set the mapper type to **ASCII 16K**
+manually.
 
 If you'd rather skip all this, just run the bundled launcher:
 
