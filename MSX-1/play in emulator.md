@@ -14,8 +14,18 @@ If you'd rather skip all this, just run the bundled launcher:
 
 Both scripts find openMSX, set the mapper to ASCII16, pick a generic
 **C-BIOS MSX2** machine that ships with openMSX, and start the ROM in
-one step. Pass `1` to force MSX1 mode (`./openmsx.sh 1` or `openmsx.bat 1`)
-or any openMSX machine ID for a specific real-machine config.
+one step. The first argument selects the machine:
+
+```
+./openmsx.sh                    # default: C-BIOS_MSX2 (bundled, MSX2 mode)
+./openmsx.sh 2                  # same as above
+./openmsx.sh 1                  # C-BIOS_MSX1 (bundled, MSX1 mode)
+./openmsx.sh Sony_HB-10         # any openMSX machine ID also works,
+./openmsx.sh Al_Alamiah_AX370   # if its BIOS ROMs are installed
+./openmsx.sh Al_Alamiah_AX170
+```
+
+Same syntax with `openmsx.bat` on Windows.
 
 ## Files in this distribution
 
