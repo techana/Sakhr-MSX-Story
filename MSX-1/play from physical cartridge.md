@@ -90,7 +90,10 @@ close the shell, label it, plug it in.
 
 - 5–7 seconds of the MSX's normal start-up screen.
 - The demo's splash: title rises, MSX logo settles, comet flies, music
-  begins, and the prompt `مسافة للاستمرار` appears at the bottom.
+  begins, and the bottom prompt appears showing the three live keys
+  (Space / M / L).
+- **Press L** on the splash to toggle the demo language between Arabic
+  and English in place. The choice is sticky for the rest of the run.
 - **Press the Space bar** to walk through four biographical / story
   slides — Mohammed Al-Sharekh, Nabil Ali, the Sakhr Computer story,
   and the Sakhr AX-100 (1984) — one after the other.

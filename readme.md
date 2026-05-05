@@ -55,10 +55,16 @@ Either way the demo runs on **MSX1, MSX2, MSX2+, and turboR** computers.
 
 - Splash with title rise, MSX-logo reveal, comet flyby, and 3-channel
   PSG music.
+- **Bilingual: Arabic and English.** Press **L** on the splash screen
+  to toggle the demo's language; the choice is sticky for the rest of
+  the run and survives the slideshow looping back. Arabic text reads
+  right-to-left and English left-to-right, both typewritten with the
+  same keyclick effect.
 - Four biographical / story slides:
-  1. **محمد الشارخ** — founder of Al-Alamiah and the Sakhr brand.
-  2. **نبيل علي** — pioneer of Arabic computing.
-  3. **حاسوب صخر** — the Sakhr Computer project itself.
+  1. **محمد الشارخ / Mohammed Al-Sharekh** — founder of Al-Alamiah
+     and the Sakhr brand.
+  2. **نبيل علي / Nabil Ali** — pioneer of Arabic computing.
+  3. **حاسوب صخر / Sakhr Computers** — the Sakhr Computer project itself.
   4. **صخر AX-100** — the 1984 launch model, an Arabic-localised port
      of the Yamaha YIS-503.
 - Letter-by-letter typewriter body text with MSX-style keyclicks at

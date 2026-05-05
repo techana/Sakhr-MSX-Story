@@ -153,16 +153,22 @@ This is why every launch has to specify ASCII16 explicitly.
 After 5–7 seconds of BIOS POST:
 
 1. **Splash** — title rises, MSX logo settles, comet flies, music kicks in,
-   `مسافة للاستمرار` prompt appears at the bottom.
-2. **Press Space** → Slide 1 (Mohammed Al-Sharekh biography, body
+   the bottom prompt appears (`M صوت  للتالي مسافة  L لغة` in Arabic
+   or `M sound  Space next  L لغة` in English).
+2. **Press L** while on the splash → toggles the demo language between
+   Arabic and English in place. The choice is **sticky** — it persists
+   for every subsequent slide and survives the slideshow looping back
+   to the splash. L is only active during the splash; once a slide
+   starts, the language is locked.
+3. **Press Space** → Slide 1 (Mohammed Al-Sharekh biography, body
    text typed letter-by-letter with MSX keyclicks at word boundaries).
-3. **Press Space again** → Slide 2 (Nabil Ali biography).
-4. **Press Space again** → Slide 3 (Sakhr Computer story on the CRT
+4. **Press Space again** → Slide 2 (Nabil Ali biography).
+5. **Press Space again** → Slide 3 (Sakhr Computer story on the CRT
    monitor backdrop).
-5. **Press Space again** → Slide 4 (Sakhr AX-100, 1984 — Arabic-localised
+6. **Press Space again** → Slide 4 (Sakhr AX-100, 1984 — Arabic-localised
    port of the Yamaha YIS-503).
-6. **Press Space at slide 4** → loops back to the splash.
-7. **Press M** at any time after the splash → toggles music mute on/off.
+7. **Press Space at slide 4** → loops back to the splash.
+8. **Press M** at any time after the splash → toggles music mute on/off.
 
 If music sounds garbled or speed is wrong, set the emulator's machine to
 an MSX1 (the demo's PSG envelope timings are tuned to TMS9918 60 Hz —
