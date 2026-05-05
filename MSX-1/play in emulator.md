@@ -1,6 +1,6 @@
 # Playing *Sakhr MSX Story Demo* in an emulator (manual launch)
 
-The cartridge image distributed here is a **128 KB ASCII16-mapper ROM**.
+The cartridge image distributed here is a **160 KB ASCII16-mapper ROM**.
 The ROM lays down an auto-detect fingerprint at boot, so most modern
 emulators (openMSX, blueMSX, WebMSX) recognise it on their own — you
 can usually just open it as a cartridge and it works. If your emulator
@@ -30,7 +30,7 @@ Same syntax with `openmsx.bat` on Windows.
 ## Files in this distribution
 
 ```
-Sakhr MSX Story Demo.rom              ← the ROM image (131,072 bytes)
+Sakhr MSX Story Demo.rom              ← the ROM image (163,840 bytes)
 openmsx.sh, openmsx.bat               ← one-click launchers
 play from physical cartridge.md       ← physical-cart playing guide
 play from physical cartridge -ar.md
@@ -89,7 +89,7 @@ What each flag does:
 | --------------------- | ------------------------------------------------------ |
 | `-machine C-BIOS_MSX2`| Hardware profile. `C-BIOS_MSX2` ships with openMSX, no extra ROM needed. Swap for `C-BIOS_MSX1` to run as MSX1, or use `Sony_HB-10` / `Al_Alamiah_AX370` if you have those BIOS images. |
 | `-carta <ROM>`        | Insert into cartridge slot A.                          |
-| `-romtype ASCII16`    | **Force the ASCII16 mapper.** Required — auto-detect can pick the wrong type for 128 KB ROMs. |
+| `-romtype ASCII16`    | **Force the ASCII16 mapper.** Required — auto-detect can pick the wrong type for 160 KB ROMs. |
 
 ### From the openMSX GUI menu
 
@@ -122,20 +122,20 @@ Slot type* and select **ASCII 16K** (sometimes labeled `ASCII16` or
 | fMSX (TI-99 fork) | `-rom <file> -ascii16` from the command line |
 
 If your emulator only offers Konami / Konami SCC / Plain mappers, it
-won't run this 128 KB image — switch to one with ASCII16 support
+won't run this 160 KB image — switch to one with ASCII16 support
 (openMSX, blueMSX, or WebMSX all have it).
 
 ## Why the mapper matters
 
-A 128 KB ROM is twice the size of an MSX1's 64 KB cartridge address
-window, so the ROM is split into eight 16 KB *banks* and the cart's
-mapper hardware swaps which bank appears on the bus when the CPU
-executes code. ASCII16 is the specific bank-switch protocol this ROM
-uses:
+A 160 KB ROM is two-and-a-half times the size of an MSX1's 64 KB
+cartridge address window, so the ROM is split into ten 16 KB *banks*
+and the cart's mapper hardware swaps which bank appears on the bus
+when the CPU executes code. ASCII16 is the specific bank-switch
+protocol this ROM uses:
 
-- Write a bank number 0..7 to address `$6000` → that bank appears at CPU
+- Write a bank number 0..9 to address `$6000` → that bank appears at CPU
   range `$4000..$7FFF` (page 1).
-- Write a bank number 0..7 to address `$7000` → that bank appears at CPU
+- Write a bank number 0..9 to address `$7000` → that bank appears at CPU
   range `$8000..$BFFF` (page 2).
 
 If the emulator thinks the cart is *Plain* (no mapper), the writes to
@@ -159,8 +159,10 @@ After 5–7 seconds of BIOS POST:
 3. **Press Space again** → Slide 2 (Nabil Ali biography).
 4. **Press Space again** → Slide 3 (Sakhr Computer story on the CRT
    monitor backdrop).
-5. **Press Space at slide 3** → loops back to the splash.
-6. **Press M** at any time after the splash → toggles music mute on/off.
+5. **Press Space again** → Slide 4 (Sakhr AX-100, 1984 — Arabic-localised
+   port of the Yamaha YIS-503).
+6. **Press Space at slide 4** → loops back to the splash.
+7. **Press M** at any time after the splash → toggles music mute on/off.
 
 If music sounds garbled or speed is wrong, set the emulator's machine to
 an MSX1 (the demo's PSG envelope timings are tuned to TMS9918 60 Hz —
