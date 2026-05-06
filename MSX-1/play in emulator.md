@@ -1,6 +1,6 @@
 # Playing *Sakhr MSX Story Demo* in an emulator (manual launch)
 
-The cartridge image distributed here is a **160 KB ASCII16-mapper ROM**.
+The cartridge image distributed here is a **192 KB ASCII16-mapper ROM**.
 The ROM lays down an auto-detect fingerprint at boot, so most modern
 emulators (openMSX, blueMSX, WebMSX) recognise it on their own — you
 can usually just open it as a cartridge and it works. If your emulator
@@ -89,7 +89,7 @@ What each flag does:
 | --------------------- | ------------------------------------------------------ |
 | `-machine C-BIOS_MSX2`| Hardware profile. `C-BIOS_MSX2` ships with openMSX, no extra ROM needed. Swap for `C-BIOS_MSX1` to run as MSX1, or use `Sony_HB-10` / `Al_Alamiah_AX370` if you have those BIOS images. |
 | `-carta <ROM>`        | Insert into cartridge slot A.                          |
-| `-romtype ASCII16`    | **Force the ASCII16 mapper.** Required — auto-detect can pick the wrong type for 160 KB ROMs. |
+| `-romtype ASCII16`    | **Force the ASCII16 mapper.** Required — auto-detect can pick the wrong type for 192 KB ROMs. |
 
 ### From the openMSX GUI menu
 
@@ -122,12 +122,12 @@ Slot type* and select **ASCII 16K** (sometimes labeled `ASCII16` or
 | fMSX (TI-99 fork) | `-rom <file> -ascii16` from the command line |
 
 If your emulator only offers Konami / Konami SCC / Plain mappers, it
-won't run this 160 KB image — switch to one with ASCII16 support
+won't run this 192 KB image — switch to one with ASCII16 support
 (openMSX, blueMSX, or WebMSX all have it).
 
 ## Why the mapper matters
 
-A 160 KB ROM is two-and-a-half times the size of an MSX1's 64 KB
+A 192 KB ROM is two-and-a-half times the size of an MSX1's 64 KB
 cartridge address window, so the ROM is split into ten 16 KB *banks*
 and the cart's mapper hardware swaps which bank appears on the bus
 when the CPU executes code. ASCII16 is the specific bank-switch
@@ -155,11 +155,11 @@ After 5–7 seconds of BIOS POST:
 1. **Splash** — title rises, MSX logo settles, comet flies, music kicks in,
    the bottom prompt appears (`M صوت  للتالي مسافة  L لغة` in Arabic
    or `M sound  Space next  L لغة` in English).
-2. **Press L** while on the splash → toggles the demo language between
-   Arabic and English in place. The choice is **sticky** — it persists
-   for every subsequent slide and survives the slideshow looping back
-   to the splash. L is only active during the splash; once a slide
-   starts, the language is locked.
+2. **Press L** at any time → toggles the demo language between Arabic
+   and English. The current slide repaints in the new language; on the
+   splash the toggle happens in place. The choice is **sticky** — it
+   persists for every subsequent slide and survives the slideshow
+   looping back to the splash.
 3. **Press Space** → Slide 1 (Mohammed Al-Sharekh biography, body
    text typed letter-by-letter with MSX keyclicks at word boundaries).
 4. **Press Space again** → Slide 2 (Nabil Ali biography).
@@ -167,8 +167,10 @@ After 5–7 seconds of BIOS POST:
    monitor backdrop).
 6. **Press Space again** → Slide 4 (Sakhr AX-100, 1984 — Arabic-localised
    port of the Yamaha YIS-503).
-7. **Press Space at slide 4** → loops back to the splash.
-8. **Press M** at any time after the splash → toggles music mute on/off.
+7. **Press Space again** → Slide 5 (Sakhr AX-170, 1986 — Arabic-localised
+   port of the Sanyo MPC-2 MSX1).
+8. **Press Space at slide 5** → loops back to the splash.
+9. **Press M** at any time after the splash → toggles music mute on/off.
 
 If music sounds garbled or speed is wrong, set the emulator's machine to
 an MSX1 (the demo's PSG envelope timings are tuned to TMS9918 60 Hz —

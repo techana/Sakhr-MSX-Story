@@ -7,7 +7,7 @@ slot 1 or slot 2 and turn the machine on.
 This package gives you the *cartridge image*:
 
 ```
-Sakhr MSX Story Demo.rom        (160 KB)
+Sakhr MSX Story Demo.rom        (192 KB)
 ```
 
 You have two routes to actually play it on a real computer:
@@ -44,7 +44,7 @@ Cartridges that are known to work:
 4. Confirm / launch. The splash screen should appear after a short
    delay.
 
-> **Why the mapper setting matters.** A 160 KB cartridge has to swap
+> **Why the mapper setting matters.** A 192 KB cartridge has to swap
 > blocks of memory in and out of the computer's view as the program
 > runs, and several different layouts existed historically. This demo
 > uses the layout known as **ASCII 16K** and includes a small fingerprint
@@ -54,7 +54,7 @@ Cartridges that are known to work:
 > splash), set the mapper manually to ASCII 16K and reload.
 
 If your multi-cart's menu doesn't list ASCII 16K at all, it likely
-can't run 160 KB ASCII16 carts. Almost every modern multi-cart does
+can't run 192 KB ASCII16 carts. Almost every modern multi-cart does
 support ASCII 16K, but a few older / hobby boards don't — check your
 model's manual.
 
@@ -71,7 +71,7 @@ What goes inside the cartridge:
 
 - A standard MSX cartridge shell.
 - **An EPROM or flash chip of at least 256 KB** for the ROM (the demo
-  is 160 KB, but the next standard chip size up from 128 KB is 256 KB —
+  is 192 KB, but the next standard chip size up from 128 KB is 256 KB —
   256-KB chips simply leave their upper 96 KB unused). Common parts:
   `M27C2001` (UV-EPROM, 256 KB) or `AT29C020` (flash EEPROM, 256 KB).
 - **A cartridge PCB with the ASCII 16K mapper.** This was the layout
@@ -92,11 +92,12 @@ close the shell, label it, plug it in.
 - The demo's splash: title rises, MSX logo settles, comet flies, music
   begins, and the bottom prompt appears showing the three live keys
   (Space / M / L).
-- **Press L** on the splash to toggle the demo language between Arabic
-  and English in place. The choice is sticky for the rest of the run.
-- **Press the Space bar** to walk through four biographical / story
+- **Press L** at any time to toggle the demo language between Arabic
+  and English. The choice is sticky for the rest of the run.
+- **Press the Space bar** to walk through five biographical / story
   slides — Mohammed Al-Sharekh, Nabil Ali, the Sakhr Computer story,
-  and the Sakhr AX-100 (1984) — one after the other.
+  the Sakhr AX-100 (1984), and the Sakhr AX-170 (1986) — one after
+  the other.
 - **Press M** at any time to mute or un-mute the music.
 - **Press Space at the last slide** → the demo loops back to the
   splash and starts over.
